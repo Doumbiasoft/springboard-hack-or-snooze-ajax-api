@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<!-- Hack or Snooze
+
+     This is the only HTML page; the applications manipulates this DOM
+     during use.
+
+     Primary authors:
+     - Michael Hueter: initial creation, 2018
+     - Elie Schoppik: refactoring using OO, 2019
+     - Joel Burton: refactored and componentized, 2020
+     - You!
+  -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hack or Snooze</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/stories.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+  </head>
+
+  <body>
+    <!-- top navigation bar -->
+    <nav>
+      <div class="navbar-brand">
+        <a class="nav-link" href="#" id="nav-all"><i class="fa fa-home fa-1x" style="color:goldenrod"></i><span id="spanHackOrSnooze"><!--&nbsp;Hack or Snooze--></span></a>
+      </div>
+      <div  class="main-nav hidden">
+        <a class="nav-link" href="#" id="nav-submit"><i class="fas fa-plus-circle"></i><span id="spanSubmit"><!--&nbsp;Submit--></span></a>
+        <a class="nav-link" href="#" id="nav-user-favorites"><i class="fas fa-heart" style="color:red"></i><span id="spanFavorite"><!--&nbsp;Favorites--></span></a>
+        <a class="nav-link" href="#" id="nav-user-story"><i class="fas fa-user-tag" style="color:orange"></i><span id="spanMystories"><!--&nbsp;My stories--></span></a>
+      </div>
+      <div class="nav-right">
+        <a class="nav-link" href="#" id="nav-login"><i class="fas fa-sign-in-alt"></i>&nbsp;login/signup</a>
+        <a class="nav-link" href="#" id="nav-user-profile"></a>
+        <a class="hidden" id="nav-logout" href="#"><i class="fas fa-sign-out-alt"></i><small>&nbsp;(logout)</small></a>
+      </div>
+    </nav>
+
+    <!-- area for stories (all stories, user stories, favorites) -->
+    <section class="stories-container container">
+      <!-- submit form -->
+      <form
+        action="#"
+        id="story-submit-form"
+        class="story-submit-form hidden"
+        method="post"
+      >
+        <h4 style="color:goldenrod">Add story</h4>
+        <div class="submit-input">
+          <label for="story-author">Author<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="story-author"
+            required
+            placeholder="author name"
+            type="text"
+          />
+        </div>
+        <div class="submit-input">
+          <label for="story-title">Title<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="story-title"
+            required
+            placeholder="story title"
+            type="text"
+          />
+        </div>
+        <div class="submit-input">
+          <label for="story-url">Url<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input id="story-url" required placeholder="story url" type="url" />
+        </div>
+        <button type="submit"><i class="fas fa-plus fa-1x"></i>&nbsp;Submit</button>
+        <hr />
+      </form>
+
+      <!-- loading message (removed by JS after stories loaded) -->
+      <div id="stories-loading-msg" class="loading"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br><small>Loading...</small></div>
+      <!-- <div id="stories-loading-msg">Loading&hellip;</div> -->
+
+      <!-- List of all stories -->
+      <ol id="all-stories-list" class="stories-list"></ol>
+
+      <!-- List of user stories -->
+      <ol id="user-stories-list" class="stories-list"></ol>
+
+       <!-- List of user favorites stories -->
+       <ol id="user-favorites-stories-list" class="stories-list"></ol>
+
+    </section>
+
+    <!-- Login and signup forms -->
+    <section class="account-forms-container container">
+      <!-- Login form -->
+      <form
+        action="#"
+        id="login-form"
+        class="account-form hidden"
+        method="post"
+      >
+        <h4 style="color:goldenrod">Login</h4>
+        <div class="login-input">
+          <label for="login-username">Username<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input id="login-username" autocomplete="current-username" required/>
+        </div>
+        <div class="login-input">
+          <label for="login-password">Password<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="login-password"
+            type="password"
+            autocomplete="current-password" required
+          />
+        </div>
+        <button type="submit"><i class="fas fa-key"></i>&nbsp;Login</button>
+        <hr />
+      </form>
+
+      <!-- Signup form -->
+      <form
+        action="#"
+        id="signup-form"
+        class="account-form hidden"
+        method="post"
+      >
+        <h4 style="color:goldenrod">Create Account</h4>
+        <div class="login-input">
+          <label for="signup-name">Name<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input id="signup-name" autocapitalize="words" required/>
+        </div>
+        <div class="login-input">
+          <label for="signup-username">Username<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input id="signup-username" autocomplete="new-username" required/>
+        </div>
+        <div class="login-input">
+          <label for="signup-password">Password<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="signup-password"
+            autocomplete="new-password"
+            type="password"
+            required
+          />
+        </div>
+        <button type="submit"><i class="fas fa-user-plus"></i>&nbsp;Create account</button>
+      </form>
+    </section>
+
+    <!-- Library JS & our JS -->
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+
+    <script src="js/models.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/stories.js"></script>
+  </body>
+</html>

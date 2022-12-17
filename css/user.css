@@ -1,0 +1,23 @@
+/* Login and signup forms */
+
+.account-form button {
+  width: 10rem;
+  margin-left: 80px;
+}
+
+#signup-form button {
+  width: 10rem;
+}
+
+.account-forms-container {
+  /* padding-left: 20px; */
+}
+
+.submit-form button {
+  width: 10rem;
+  margin-left: 80px;
+}
+.stories-form-container {
+  padding-left: 20px;
+}
+
