@@ -60,9 +60,7 @@ function hidePageComponents() {
 
 async function start() {
   console.debug("start");
-
   mobileMenuIcon();
-
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
   await getAndShowStoriesOnStart();
@@ -80,24 +78,27 @@ console.warn("HEY STUDENT: This program sends many debug messages to" +
   " menu 'Default Levels' and add Verbose");
 $(start);
 
-function mobileMenuIcon(){
+
+function mobileMenuIcon() {
+  CheckscreenMode();
   $(window).resize(function () {
-
-    if (window.matchMedia("(max-width: 767px)").matches) {
-      // The viewport is less than 768 pixels wide Mobile
-
-      $spanHackOrSnooze.html("");
-      $spanSubmit.html("");
-      $spanFavorite.html("");
-      $spanMystories.html("");
-
-    } else {
-      // The viewport is at least 768 pixels wide web or tablet
-      $spanHackOrSnooze.html("&nbsp;Hack or Snooze");
-      $spanSubmit.html("&nbsp;Submit");
-      $spanFavorite.html("&nbsp;Favorites");
-      $spanMystories.html("&nbsp;My stories");
-    }
-
+    CheckscreenMode();
   });
+}
+function CheckscreenMode() {
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    // The viewport is less than 768 pixels wide Mobile
+
+    $spanHackOrSnooze.html("");
+    $spanSubmit.html("");
+    $spanFavorite.html("");
+    $spanMystories.html("");
+
+  } else {
+    // The viewport is at least 768 pixels wide web or tablet
+    $spanHackOrSnooze.html("&nbsp;Hack or Snooze");
+    $spanSubmit.html("&nbsp;Submit");
+    $spanFavorite.html("&nbsp;Favorites");
+    $spanMystories.html("&nbsp;My stories");
+  }
 }
