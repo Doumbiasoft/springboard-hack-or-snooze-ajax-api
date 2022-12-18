@@ -100,7 +100,7 @@ function generateStoryMarkup(story) {
         <span style="text-transform:capitalize;"><small style="font-weight:bold">posted by</small>&nbsp;${story.username}</span><br>
         <small><span style="font-weight:bold;">${postedDate}</span></small><br>
         <div style="margin:10px;font-size:16px">
-        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x" style="color:red;cursor:pointer;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="DeleteIcon ${iconDelete} far fa-trash-alt fa-1x" title="Remove" style="color:gray;cursor:pointer;"></i>
+        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x" style="color:red;cursor:pointer;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="deleteIcon ${iconDelete} far fa-trash-alt fa-1x" title="Remove" style="color:gray;cursor:pointer;"></i>
         </div>
         <hr  style="color:#f0f0f0;">
       </li>
@@ -150,5 +150,25 @@ $userFavoritesStoriesList.on("click", ".favoriteIcon", LoadUserFavoritesStoriesO
 
 $userStoriesList.on("click", ".favoriteIcon", addOrRemoveFavorite);
 $userStoriesList.on("click", ".favoriteIcon", LoadUserStoriesOnPage);
+
+/** delete Story */
+
+async function deleteStory(e) {
+debugger;
+  const $target = $(e.target);
+  const storyId = $target.closest("i").attr("data-id");
+  await storyList.removeStory(currentUser, storyId);
+  
+}
+
+
+$allStoriesList.on("click", ".deleteIcon", deleteStory);
+$allStoriesList.on("click", ".deleteIcon", putStoriesOnPage);
+
+$userFavoritesStoriesList.on("click", ".deleteIcon", deleteStory);
+$userFavoritesStoriesList.on("click", ".deleteIcon", LoadUserFavoritesStoriesOnPage);
+
+$userStoriesList.on("click", ".deleteIcon", deleteStory);
+$userStoriesList.on("click", ".deleteIcon", LoadUserStoriesOnPage);
 
 

@@ -95,7 +95,7 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $mainNav.show();
-  $navUserProfile.append(`<i class="fas fa-user-alt fa-1x" style="color:green"></i>&nbsp;${currentUser.username}`);
+  $navUserProfile.append(`<i class="fas fa-user-circle fa-1x" style="color:white;font-size:17"></i>&nbsp;${currentUser.username}`);
   //$navUserProfile.html(`<i class="fas fa-user-circle"></i>&nbsp;${currentUser.username}`).show();
 }
 
