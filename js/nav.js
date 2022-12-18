@@ -23,8 +23,6 @@ function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
   $storySubmitForm.trigger('reset');
-  // $loginForm.show();
-  // $signupForm.show();
   $loginForm.slideDown("slow");
   $signupForm.slideDown("slow");
   
@@ -37,16 +35,23 @@ $navLogin.on("click", navLoginClick);
 function navSubmitClick(e) {
   console.debug("navSubmitClick", e);
   hidePageComponents();
-  getAndShowStoriesOnStart();
 
+  /** */
   $storySubmitForm.trigger('reset');
-  $loginForm.hide();
-  $signupForm.hide();
-  putStoriesOnPage();
-
+  $allStoriesList.show();
   $storySubmitForm.slideDown("slow");
   $('a').removeClass('active');
   $navSubmit.addClass("active");
+  /** */
+
+  // $storySubmitForm.trigger('reset');
+  // $loginForm.hide();
+  // $signupForm.hide();
+  // putStoriesOnPage();
+
+  // $storySubmitForm.slideDown("slow");
+  // $('a').removeClass('active');
+  // $navSubmit.addClass("active");
   
 }
 
@@ -98,4 +103,3 @@ function updateNavOnLogin() {
   $navUserProfile.append(`<i class="fas fa-user-circle fa-1x" style="color:white;font-size:17"></i>&nbsp;${currentUser.username}`);
   //$navUserProfile.html(`<i class="fas fa-user-circle"></i>&nbsp;${currentUser.username}`).show();
 }
-

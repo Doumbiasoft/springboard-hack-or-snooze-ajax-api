@@ -83,6 +83,38 @@
         <button type="submit"><i class="fas fa-plus fa-1x"></i>&nbsp;Submit</button>
         <hr />
       </form>
+      <!-- edit form -->
+      <form
+        action="#"
+        id="edit-story-submit-form"
+        class="story-submit-form hidden"
+        method="post"
+      >
+        <h4 style="color:goldenrod">Edit story</h4>
+        <div class="submit-input">
+          <label for="edit-story-author">Author<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="edit-story-author"
+            required
+            placeholder="author name"
+            type="text"
+          />
+        </div>
+        <div class="submit-input">
+          <label for="edit-story-title">Title<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input
+            id="edit-story-title"
+            required
+            placeholder="story title"
+            type="text"
+          />
+        </div>
+        <div class="submit-input">
+          <label for="edit-story-url">Url<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <input id="edit-story-url" required placeholder="story url" type="url" />
+        </div>
+        <button type="submit"><i class="fas fa-plus fa-1x"></i>&nbsp;Update</button>
+      </form>
 
       <!-- loading message (removed by JS after stories loaded) -->
       <div id="stories-loading-msg" class="loading"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br><small>Loading...</small></div>

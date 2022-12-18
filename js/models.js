@@ -24,7 +24,7 @@ class Story {
 
   /** Parses hostname out of URL and returns it. */
 
-  getHostName() {
+   getHostName() {
     // UNIMPLEMENTED: complete this function!
     //return "hostname.com";
     return new URL(this.url).hostname;
@@ -98,8 +98,51 @@ class StoryList {
     return story;
   }
 
+  async updateStory(user, story) {
+   
+    const indexAll = this.stories.findIndex(s => {
+      return s.storyId === story.storyId;
+    }); // 👉️ 1
+    
+    if (indexAll !== -1) {
+      this.stories[indexAll].author = story.author;
+      this.stories[indexAll].author = story.author;
+      this.stories[indexAll].author = story.author;
+    }
+    const indexOwn = user.ownStories.findIndex(s => {
+      return s.storyId === story.storyId;
+    }); // 👉️ 1
+    
+    if (indexOwn !== -1) {
+      user.ownStories[indexOwn].author = story.author;
+      user.ownStories[indexOwn].author = story.author;
+      user.ownStories[indexOwn].author = story.author;
+    }
+    const indexFavorite = user.favorites.findIndex(s => {
+      return s.storyId === story.storyId;
+    }); // 👉️ 1
+    
+    if (indexFavorite !== -1) {
+      user.favorites[indexFavorite].author = story.author;
+      user.favorites[indexFavorite].author = story.author;
+      user.favorites[indexFavorite].author = story.author;
+    }
+
+    await axios({
+      url: `${BASE_URL}/stories/${story.storyId}`,
+      method: "PATCH",
+      data: {
+        token: user.loginToken,
+        story: {
+          author: story.author,
+          title: story.title,
+          url: story.url
+        }
+      },
+    });
+
+  }
   async removeStory(user, storyId) {
-    debugger;
     this.stories = this.stories.filter(s => s.storyId !== storyId);
     user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
     user.favorites = user.favorites.filter(s => s.storyId !== storyId);
@@ -108,7 +151,7 @@ class StoryList {
       method: "DELETE",
       data: { token: user.loginToken }
     });
-   
+
   }
 }
 

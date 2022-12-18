@@ -4,6 +4,8 @@
 let storyList;
 let iconFavorite;
 let iconDelete;
+let iconEdit;
+let storyId;
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -35,39 +37,6 @@ async function addNewStory(evt) {
 
 $storySubmitForm.on("submit", addNewStory);
 
-/**  Shows user's own stories list*/
-
-function LoadUserStoriesOnPage() {
-  $userStoriesList.empty();
-  const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;User stories</h4><br>`);
-  $userStoriesList.append($title);
-  if (currentUser.ownStories.length === 0) {
-    $userStoriesList.append("<h3>No stories added by the user!</h3>");
-  } else {
-    for (let s of currentUser.ownStories) {
-      let $story = generateStoryMarkup(s);
-      $userStoriesList.append($story);
-    }
-  }
-  $userStoriesList.show();
-}
-/**  Shows user's own favarites stories list*/
-
-function LoadUserFavoritesStoriesOnPage() {
-  $userFavoritesStoriesList.empty();
-  const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;Favorite stories</h4><br>`);
-  $userFavoritesStoriesList.append($title);
-
-  if (currentUser.favorites.length === 0) {
-    $userFavoritesStoriesList.append("<h3>No favorite stories added!</h3>");
-  } else {
-    for (let s of currentUser.favorites) {
-      let $story = generateStoryMarkup(s);
-      $userFavoritesStoriesList.append($story);
-    }
-  }
-  $userFavoritesStoriesList.show();
-}
 
 
 /**
@@ -79,12 +48,16 @@ function LoadUserFavoritesStoriesOnPage() {
 
 function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
+  if (story === null) return;
+
   if (currentUser !== undefined) {
     iconFavorite = currentUser.isFavorite(story) ? 'fas' : 'far';
     iconDelete = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
+    iconEdit = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
   } else {
     iconFavorite = 'hidden';
     iconDelete = 'hidden';
+    iconEdit = 'hidden';
   }
 
   const hostName = story.getHostName();
@@ -100,7 +73,9 @@ function generateStoryMarkup(story) {
         <span style="text-transform:capitalize;"><small style="font-weight:bold">posted by</small>&nbsp;${story.username}</span><br>
         <small><span style="font-weight:bold;">${postedDate}</span></small><br>
         <div style="margin:10px;font-size:16px">
-        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x" style="color:red;cursor:pointer;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="deleteIcon ${iconDelete} far fa-trash-alt fa-1x" title="Remove" style="color:gray;cursor:pointer;"></i>
+        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x" style="color:red;cursor:pointer;"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="editIcon ${iconEdit} far fa-edit fa-1x" title="Edit" style="color:gray;cursor:pointer;"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="deleteIcon ${iconDelete} far fa-trash-alt fa-1x" title="Remove" style="color:gray;cursor:pointer;"></i>
         </div>
         <hr  style="color:#f0f0f0;">
       </li>
@@ -114,7 +89,7 @@ function putStoriesOnPage() {
 
   $allStoriesList.empty();
   const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;All stories</h4><br>`);
-  $allStoriesList.append($title);
+  $allStoriesList.prepend($title);
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
@@ -123,6 +98,42 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+/**  Shows user's own stories list*/
+
+function LoadUserStoriesOnPage() {
+  console.debug("LoadUserStoriesOnPage");
+  $userStoriesList.empty();
+  const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;User stories</h4><br>`);
+  $userStoriesList.prepend($title);
+  if (currentUser.ownStories.length === 0) {
+    $userStoriesList.append("<h3>No stories added by the user!</h3>");
+  } else {
+    for (let s of currentUser.ownStories) {
+      let $story = generateStoryMarkup(s);
+      $userStoriesList.append($story);
+    }
+  }
+  $userStoriesList.show();
+}
+/**  Shows user's own favarites stories list*/
+
+function LoadUserFavoritesStoriesOnPage() {
+  console.debug("LoadUserFavoritesStoriesOnPage");
+  $userFavoritesStoriesList.empty();
+  const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;Favorite stories</h4><br>`);
+  $userFavoritesStoriesList.prepend($title);
+
+  if (currentUser.favorites.length === 0) {
+    $userFavoritesStoriesList.append("<h3>No favorite stories added!</h3>");
+  } else {
+    for (let s of currentUser.favorites) {
+      let $story = generateStoryMarkup(s);
+      $userFavoritesStoriesList.append($story);
+    }
+  }
+  $userFavoritesStoriesList.show();
+}
+
 
 /** Add and Remove favorite */
 
@@ -154,13 +165,10 @@ $userStoriesList.on("click", ".favoriteIcon", LoadUserStoriesOnPage);
 /** delete Story */
 
 async function deleteStory(e) {
-debugger;
   const $target = $(e.target);
   const storyId = $target.closest("i").attr("data-id");
   await storyList.removeStory(currentUser, storyId);
-  
 }
-
 
 $allStoriesList.on("click", ".deleteIcon", deleteStory);
 $allStoriesList.on("click", ".deleteIcon", putStoriesOnPage);
@@ -170,5 +178,43 @@ $userFavoritesStoriesList.on("click", ".deleteIcon", LoadUserFavoritesStoriesOnP
 
 $userStoriesList.on("click", ".deleteIcon", deleteStory);
 $userStoriesList.on("click", ".deleteIcon", LoadUserStoriesOnPage);
+
+/** update Story */
+
+ function editStory(e) {
+  console.debug("editStory", e);
+  const $target = $(e.target);
+  const stId = $target.closest("i").attr("data-id");
+  const story = storyList.stories.find((s) => s.storyId === stId);
+  storyId = stId;
+  $("#edit-story-author").val(story.author);
+  $("#edit-story-title").val(story.title);
+  $("#edit-story-url").val(story.url);
+  hidePageComponents();
+  $editStorySubmitForm.slideDown();
+
+}
+$allStoriesList.on("click", ".editIcon", editStory);
+$userFavoritesStoriesList.on("click", ".editIcon", editStory);
+$userStoriesList.on("click", ".editIcon", editStory);
+
+
+async function updateAstory(e) {
+  e.preventDefault();
+  console.debug("updateAstory", e);
+  
+  // get infos from story form
+  const author = $("#edit-story-author").val();
+  const title = $("#edit-story-title").val();
+  const url = $("#edit-story-url").val();
+  const story = { storyId, author, title, url };
+  await storyList.updateStory(currentUser, story);
+  $editStorySubmitForm.slideUp();
+  putStoriesOnPage();
+  LoadUserStoriesOnPage();
+  LoadUserFavoritesStoriesOnPage();
+}
+$editStorySubmitForm.on("submit", updateAstory);
+
 
 
