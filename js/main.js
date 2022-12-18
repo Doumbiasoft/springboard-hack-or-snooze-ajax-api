@@ -14,6 +14,7 @@ const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
 const $storySubmitForm = $("#story-submit-form");
 const $editStorySubmitForm = $("#edit-story-submit-form");
+const $btnSubmitEditForm = $("#btnSubmitEditForm");
 
 const $navHome = $("#nav-all");
 const $navLogin = $("#nav-login");

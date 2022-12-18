@@ -38,20 +38,12 @@ function navSubmitClick(e) {
 
   /** */
   $storySubmitForm.trigger('reset');
-  $allStoriesList.show();
+  //$allStoriesList.show();
+  putStoriesOnPage();
   $storySubmitForm.slideDown("slow");
   $('a').removeClass('active');
   $navSubmit.addClass("active");
-  /** */
 
-  // $storySubmitForm.trigger('reset');
-  // $loginForm.hide();
-  // $signupForm.hide();
-  // putStoriesOnPage();
-
-  // $storySubmitForm.slideDown("slow");
-  // $('a').removeClass('active');
-  // $navSubmit.addClass("active");
   
 }
 

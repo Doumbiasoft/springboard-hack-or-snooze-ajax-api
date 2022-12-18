@@ -106,8 +106,8 @@ class StoryList {
     
     if (indexAll !== -1) {
       this.stories[indexAll].author = story.author;
-      this.stories[indexAll].author = story.author;
-      this.stories[indexAll].author = story.author;
+      this.stories[indexAll].title = story.title;
+      this.stories[indexAll].url = story.url;
     }
     const indexOwn = user.ownStories.findIndex(s => {
       return s.storyId === story.storyId;
@@ -115,8 +115,8 @@ class StoryList {
     
     if (indexOwn !== -1) {
       user.ownStories[indexOwn].author = story.author;
-      user.ownStories[indexOwn].author = story.author;
-      user.ownStories[indexOwn].author = story.author;
+      user.ownStories[indexOwn].title = story.title;
+      user.ownStories[indexOwn].url = story.url;
     }
     const indexFavorite = user.favorites.findIndex(s => {
       return s.storyId === story.storyId;
@@ -124,8 +124,8 @@ class StoryList {
     
     if (indexFavorite !== -1) {
       user.favorites[indexFavorite].author = story.author;
-      user.favorites[indexFavorite].author = story.author;
-      user.favorites[indexFavorite].author = story.author;
+      user.favorites[indexFavorite].title = story.title;
+      user.favorites[indexFavorite].url = story.url;
     }
 
     await axios({

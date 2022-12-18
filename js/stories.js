@@ -6,6 +6,7 @@ let iconFavorite;
 let iconDelete;
 let iconEdit;
 let storyId;
+let view;
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -181,8 +182,9 @@ $userStoriesList.on("click", ".deleteIcon", LoadUserStoriesOnPage);
 
 /** update Story */
 
- function editStory(e) {
+function editStory(e) {
   console.debug("editStory", e);
+
   const $target = $(e.target);
   const stId = $target.closest("i").attr("data-id");
   const story = storyList.stories.find((s) => s.storyId === stId);
@@ -194,15 +196,30 @@ $userStoriesList.on("click", ".deleteIcon", LoadUserStoriesOnPage);
   $editStorySubmitForm.slideDown();
 
 }
+function setViewAll() {
+  $btnSubmitEditForm.attr("data-view", "All");
+}
+function setViewFav() {
+  $btnSubmitEditForm.attr("data-view", "Fav");
+}
+function setViewOwn() {
+  $btnSubmitEditForm.attr("data-view", "Own");
+}
+
 $allStoriesList.on("click", ".editIcon", editStory);
+$allStoriesList.on("click", ".editIcon", setViewAll);
+
 $userFavoritesStoriesList.on("click", ".editIcon", editStory);
+$userFavoritesStoriesList.on("click", ".editIcon", setViewFav);
+
 $userStoriesList.on("click", ".editIcon", editStory);
+$userStoriesList.on("click", ".editIcon", setViewOwn);
 
 
 async function updateAstory(e) {
   e.preventDefault();
   console.debug("updateAstory", e);
-  
+
   // get infos from story form
   const author = $("#edit-story-author").val();
   const title = $("#edit-story-title").val();
@@ -210,9 +227,21 @@ async function updateAstory(e) {
   const story = { storyId, author, title, url };
   await storyList.updateStory(currentUser, story);
   $editStorySubmitForm.slideUp();
-  putStoriesOnPage();
-  LoadUserStoriesOnPage();
-  LoadUserFavoritesStoriesOnPage();
+
+  view = $btnSubmitEditForm.attr("data-view");
+  
+  switch (view) {
+    case "All":
+      putStoriesOnPage();
+      break;
+    case "Fav":
+      LoadUserFavoritesStoriesOnPage();
+      break;
+    case "Own":
+      LoadUserStoriesOnPage();
+      break;
+  }
+
 }
 $editStorySubmitForm.on("submit", updateAstory);
 
