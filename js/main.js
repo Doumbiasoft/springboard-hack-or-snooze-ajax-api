@@ -15,14 +15,25 @@ const $signupForm = $("#signup-form");
 const $storySubmitForm = $("#story-submit-form");
 const $editStorySubmitForm = $("#edit-story-submit-form");
 const $btnSubmitEditForm = $("#btnSubmitEditForm");
+const $usernameForm = $("#username-form");
+const $passwordForm = $("#password-form");
+
+
 
 const $navHome = $("#nav-all");
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
+const $sectionUserProfile = $("#user-profile");
+
 const $navLogOut = $("#nav-logout");
 const $navSubmit = $("#nav-submit");
 const $navUserStory = $("#nav-user-story");
 const $navUserFavorites = $("#nav-user-favorites");
+
+const $editUsernane = $("#edit-usernane");
+const $editPassword = $("#edit-password");
+
+
 
 
 const $mainNav = $(".main-nav");

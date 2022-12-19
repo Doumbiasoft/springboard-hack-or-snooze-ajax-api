@@ -34,17 +34,33 @@
     <!-- top navigation bar -->
     <nav>
       <div class="navbar-brand">
-        <a class="nav-link" href="#" id="nav-all"><i class="fa fa-home fa-1x" style="color:goldenrod"></i><span id="spanHackOrSnooze"><!--&nbsp;Hack or Snooze--></span></a>
+        <a class="nav-link" href="#" id="nav-all"
+          ><i class="fa fa-home fa-1x" style="color: goldenrod"></i
+          ><span id="spanHackOrSnooze"><!--&nbsp;Hack or Snooze--></span></a
+        >
       </div>
-      <div  class="main-nav hidden">
-        <a class="nav-link" href="#" id="nav-submit"><i class="fas fa-plus-circle"></i><span id="spanSubmit"><!--&nbsp;Submit--></span></a>
-        <a class="nav-link" href="#" id="nav-user-favorites"><i class="fas fa-heart" style="color:red"></i><span id="spanFavorite"><!--&nbsp;Favorites--></span></a>
-        <a class="nav-link" href="#" id="nav-user-story"><i class="fas fa-user-tag" style="color:orange"></i><span id="spanMystories"><!--&nbsp;My stories--></span></a>
+      <div class="main-nav hidden">
+        <a class="nav-link" href="#" id="nav-submit"
+          ><i class="fas fa-plus-circle"></i
+          ><span id="spanSubmit"><!--&nbsp;Submit--></span></a
+        >
+        <a class="nav-link" href="#" id="nav-user-favorites"
+          ><i class="fas fa-heart" style="color: red"></i
+          ><span id="spanFavorite"><!--&nbsp;Favorites--></span></a
+        >
+        <a class="nav-link" href="#" id="nav-user-story"
+          ><i class="fas fa-user-tag" style="color: orange"></i
+          ><span id="spanMystories"><!--&nbsp;My stories--></span></a
+        >
       </div>
       <div class="nav-right">
-        <a class="nav-link" href="#" id="nav-login"><i class="fas fa-sign-in-alt"></i>&nbsp;login/signup</a>
+        <a class="nav-link" href="#" id="nav-login"
+          ><i class="fas fa-sign-in-alt"></i>&nbsp;login/signup</a
+        >
         <a class="nav-link" href="#" id="nav-user-profile"></a>
-        <a class="hidden" id="nav-logout" href="#"><i class="fas fa-sign-out-alt"></i><small>&nbsp;(logout)</small></a>
+        <a class="hidden" id="nav-logout" href="#"
+          ><i class="fas fa-sign-out-alt"></i><small>&nbsp;(logout)</small></a
+        >
       </div>
     </nav>
 
@@ -57,9 +73,11 @@
         class="story-submit-form hidden"
         method="post"
       >
-        <h4 style="color:goldenrod">Add story</h4>
+        <h4 style="color: goldenrod">Add story</h4>
         <div class="submit-input">
-          <label for="story-author">Author<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="story-author"
+            >Author<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="story-author"
             required
@@ -68,7 +86,9 @@
           />
         </div>
         <div class="submit-input">
-          <label for="story-title">Title<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="story-title"
+            >Title<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="story-title"
             required
@@ -77,10 +97,14 @@
           />
         </div>
         <div class="submit-input">
-          <label for="story-url">Url<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="story-url"
+            >Url<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input id="story-url" required placeholder="story url" type="url" />
         </div>
-        <button type="submit"><i class="fas fa-plus fa-1x"></i>&nbsp;Submit</button>
+        <button type="submit">
+          <i class="fas fa-plus fa-1x"></i>&nbsp;Submit
+        </button>
         <hr />
       </form>
       <!-- edit form -->
@@ -90,9 +114,11 @@
         class="story-submit-form hidden"
         method="post"
       >
-        <h4 style="color:goldenrod">Edit story</h4>
+        <h4 style="color: goldenrod">Edit story</h4>
         <div class="submit-input">
-          <label for="edit-story-author">Author<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="edit-story-author"
+            >Author<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="edit-story-author"
             required
@@ -101,7 +127,9 @@
           />
         </div>
         <div class="submit-input">
-          <label for="edit-story-title">Title<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="edit-story-title"
+            >Title<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="edit-story-title"
             required
@@ -110,14 +138,27 @@
           />
         </div>
         <div class="submit-input">
-          <label for="edit-story-url">Url<span style="color: red;">&nbsp;*&nbsp;</span></label>
-          <input id="edit-story-url" required placeholder="story url" type="url" />
+          <label for="edit-story-url"
+            >Url<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
+          <input
+            id="edit-story-url"
+            required
+            placeholder="story url"
+            type="url"
+          />
         </div>
-        <button id="btnSubmitEditForm" type="submit"><i class="fas fa-plus fa-1x"></i>&nbsp;Update</button>
+        <button id="btnSubmitEditForm" type="submit">
+          <i class="fas fa-sync-alt fa-1x"></i>&nbsp;Update
+        </button>
       </form>
 
       <!-- loading message (removed by JS after stories loaded) -->
-      <div id="stories-loading-msg" class="loading"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br><small>Loading...</small></div>
+      <div id="stories-loading-msg" class="loading">
+        <i class="fa fa-spinner fa-spin fa-2x"></i><br /><br /><small
+          >Loading...</small
+        >
+      </div>
       <!-- <div id="stories-loading-msg">Loading&hellip;</div> -->
 
       <!-- List of all stories -->
@@ -126,9 +167,8 @@
       <!-- List of user stories -->
       <ol id="user-stories-list" class="stories-list"></ol>
 
-       <!-- List of user favorites stories -->
-       <ol id="user-favorites-stories-list" class="stories-list"></ol>
-
+      <!-- List of user favorites stories -->
+      <ol id="user-favorites-stories-list" class="stories-list"></ol>
     </section>
 
     <!-- Login and signup forms -->
@@ -140,17 +180,22 @@
         class="account-form hidden"
         method="post"
       >
-        <h4 style="color:goldenrod">Login</h4>
+        <h4 style="color: goldenrod">Login</h4>
         <div class="login-input">
-          <label for="login-username">Username<span style="color: red;">&nbsp;*&nbsp;</span></label>
-          <input id="login-username" autocomplete="current-username" required/>
+          <label for="login-username"
+            >Username<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
+          <input id="login-username" autocomplete="current-username" required />
         </div>
         <div class="login-input">
-          <label for="login-password">Password<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="login-password"
+            >Password<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="login-password"
             type="password"
-            autocomplete="current-password" required
+            autocomplete="current-password"
+            required
           />
         </div>
         <button type="submit"><i class="fas fa-key"></i>&nbsp;Login</button>
@@ -164,17 +209,23 @@
         class="account-form hidden"
         method="post"
       >
-        <h4 style="color:goldenrod">Create Account</h4>
+        <h4 style="color: goldenrod">Create Account</h4>
         <div class="login-input">
-          <label for="signup-name">Name<span style="color: red;">&nbsp;*&nbsp;</span></label>
-          <input id="signup-name" autocapitalize="words" required/>
+          <label for="signup-name"
+            >Name<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
+          <input id="signup-name" autocapitalize="words" required />
         </div>
         <div class="login-input">
-          <label for="signup-username">Username<span style="color: red;">&nbsp;*&nbsp;</span></label>
-          <input id="signup-username" autocomplete="new-username" required/>
+          <label for="signup-username"
+            >Username<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
+          <input id="signup-username" autocomplete="new-username" required />
         </div>
         <div class="login-input">
-          <label for="signup-password">Password<span style="color: red;">&nbsp;*&nbsp;</span></label>
+          <label for="signup-password"
+            >Password<span style="color: red">&nbsp;*&nbsp;</span></label
+          >
           <input
             id="signup-password"
             autocomplete="new-password"
@@ -182,8 +233,101 @@
             required
           />
         </div>
-        <button type="submit"><i class="fas fa-user-plus"></i>&nbsp;Create account</button>
+        <button type="submit">
+          <i class="fas fa-user-plus"></i>&nbsp;Create account
+        </button>
       </form>
+    </section>
+    <!-- User profile -->
+    <section id="user-profile" class="hidden">
+      <div style="line-height: 2;" class="user-profile-box container">
+        <section>
+          <h4 style="color: goldenrod">User Profile Info</h4>
+          <hr>
+          <table width="100%">
+            <tr>
+              <td style="width: 65px;">
+                <i id="edit-profile" class="fas fa-user-circle fa-4x" title="Edit" style="color:#424141;"></i>
+              </td>
+              <td>
+                <div><span style="font-weight: bold;">Name :</span>&nbsp;<span id="profile-name">Name:</span></div>
+                <div><span style="font-weight: bold;">Username :</span>&nbsp;<span id="profile-username">Username:</span></div>
+                <div><span style="font-weight: bold;">Account Created :</span>&nbsp;<span id="profile-account-date">date</span></div>
+              </td>
+            </tr>
+          </table>
+          <hr>
+          <i id="edit-usernane" class="fas fa-user-edit fa-1x" title="Edit username" style="color:gray;cursor:pointer;font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i id="edit-password" class="fas fa-key fa-1x" title="Edit password" style="color:gray;cursor:pointer;font-size: 19px;"></i><br>
+          <br>
+        </section>
+        <section class="">
+         <!-- username form -->
+        
+          <form
+            action="#"
+            id="username-form"
+            class="account-form hidden"
+            method="post"
+          >
+          <h5 style="color: goldenrod">Edit username</h5>
+            <div class="login-input">
+              <label for="login-username"
+                >Username<span style="color: red">&nbsp;*&nbsp;</span></label
+              >
+              <input id="login-username" autocomplete="current-username" required />
+            </div>
+            
+            <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
+          </form>
+        </section>
+        <section class="">
+          <!-- password form -->
+          
+          <form
+            action="#"
+            id="password-form"
+            class="account-form hidden"
+            method="post"
+          >
+          <h5 style="color: goldenrod">Edit password</h5>
+            <div class="login-input">
+              <label for="login-password"
+                >Current password<span style="color: red">&nbsp;*&nbsp;</span></label
+              >
+              <input
+                id="login-password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <div class="login-input">
+              <label for="login-password"
+                >New password<span style="color: red">&nbsp;*&nbsp;</span></label
+              >
+              <input
+                id="login-password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <div class="login-input">
+              <label for="login-password"
+                >Confirm password<span style="color: red">&nbsp;*&nbsp;</span></label
+              >
+              <input
+                id="login-password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
+          </form>
+        </section>
+      </div>
     </section>
 
     <!-- Library JS & our JS -->

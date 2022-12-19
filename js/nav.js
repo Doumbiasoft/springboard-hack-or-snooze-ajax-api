@@ -30,6 +30,31 @@ function navLoginClick(evt) {
 
 $navLogin.on("click", navLoginClick);
 
+function navUserProfileClick(evt) {
+  console.debug("navLoginClick", evt);
+  hidePageComponents();
+  $usernameForm.slideUp("slow");
+  $passwordForm.slideUp("slow");
+  $sectionUserProfile.slideDown("slow");
+  $('a').removeClass('active');
+  $navUserProfile.addClass("active");
+}
+
+$navUserProfile.on("click", navUserProfileClick);
+
+function editUserNameClick(e) {
+  $usernameForm.slideDown("slow");
+  $passwordForm.slideUp("slow");
+}
+$editUsernane.on("click", editUserNameClick);
+
+function editUserPasswordClick(e) {
+  $usernameForm.slideUp("slow");
+  $passwordForm.slideDown("slow");
+}
+$editPassword.on("click", editUserPasswordClick);
+
+
 /** Show story submit form on click on "Submit" */
 
 function navSubmitClick(e) {
