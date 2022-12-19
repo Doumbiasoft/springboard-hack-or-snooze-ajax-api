@@ -25,7 +25,7 @@ function navLoginClick(evt) {
   $storySubmitForm.trigger('reset');
   $loginForm.slideDown("slow");
   $signupForm.slideDown("slow");
-  
+
 }
 
 $navLogin.on("click", navLoginClick);
@@ -33,7 +33,11 @@ $navLogin.on("click", navLoginClick);
 function navUserProfileClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
-  
+
+  $profileName.html(currentUser.name);
+  $profileUsername.html(currentUser.username);
+  $profileAccountDate.html(new Date(currentUser.createdAt));
+
   $sectionUserProfile.slideDown("slow");
   $('a').removeClass('active');
   $navUserProfile.addClass("active");
@@ -42,6 +46,8 @@ function navUserProfileClick(evt) {
 $navUserProfile.on("click", navUserProfileClick);
 
 function editUserNameClick(e) {
+  debugger;
+  $userNameTxt.val(currentUser.name);
   $usernameForm.slideDown("slow");
   $passwordForm.slideUp("slow");
 }
@@ -68,7 +74,7 @@ function navSubmitClick(e) {
   $('a').removeClass('active');
   $navSubmit.addClass("active");
 
-  
+
 }
 
 $navSubmit.on("click", navSubmitClick);
@@ -101,7 +107,7 @@ function navUserFavoritesClick(e) {
   LoadUserFavoritesStoriesOnPage();
   $('a').removeClass('active');
   $navUserFavorites.addClass("active");
-  
+
 }
 
 $navUserFavorites.on("click", navUserFavoritesClick);

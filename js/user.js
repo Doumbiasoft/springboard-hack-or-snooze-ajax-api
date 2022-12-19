@@ -52,6 +52,21 @@ async function signup(evt) {
 
 $signupForm.on("submit", signup);
 
+async function updateUserName(e) {
+  console.debug("updateUserName", e);
+  e.preventDefault();
+
+  const name =$userNameTxt.val();
+  $profileName.text(name);
+  await currentUser.updateUserName(name);
+  $usernameForm.slideUp("slow");
+  $usernameForm.trigger('reset');
+  
+}
+
+$usernameForm.on("submit", updateUserName);
+
+
 /** Handle click of logout button
  *
  * Remove their credentials from localStorage and refresh page

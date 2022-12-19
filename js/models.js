@@ -24,7 +24,7 @@ class Story {
 
   /** Parses hostname out of URL and returns it. */
 
-   getHostName() {
+  getHostName() {
     // UNIMPLEMENTED: complete this function!
     //return "hostname.com";
     return new URL(this.url).hostname;
@@ -99,11 +99,11 @@ class StoryList {
   }
 
   async updateStory(user, story) {
-   
+
     const indexAll = this.stories.findIndex(s => {
       return s.storyId === story.storyId;
     }); // 👉️ 1
-    
+
     if (indexAll !== -1) {
       this.stories[indexAll].author = story.author;
       this.stories[indexAll].title = story.title;
@@ -112,7 +112,7 @@ class StoryList {
     const indexOwn = user.ownStories.findIndex(s => {
       return s.storyId === story.storyId;
     }); // 👉️ 1
-    
+
     if (indexOwn !== -1) {
       user.ownStories[indexOwn].author = story.author;
       user.ownStories[indexOwn].title = story.title;
@@ -121,7 +121,7 @@ class StoryList {
     const indexFavorite = user.favorites.findIndex(s => {
       return s.storyId === story.storyId;
     }); // 👉️ 1
-    
+
     if (indexFavorite !== -1) {
       user.favorites[indexFavorite].author = story.author;
       user.favorites[indexFavorite].title = story.title;
@@ -269,6 +269,18 @@ class User {
       console.error("loginViaStoredCredentials failed", err);
       return null;
     }
+  }
+
+  async updateUserName(name) {
+    this.name = name;
+    await axios({
+      url: `${BASE_URL}/users/${this.username}`,
+      method: "PATCH",
+      data: {
+        token: this.loginToken,
+        user: { name: name }
+      },
+    });
   }
 
   /** Add a story to the list of user favorites and update the Api*/

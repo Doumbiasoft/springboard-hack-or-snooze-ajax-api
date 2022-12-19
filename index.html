@@ -252,12 +252,12 @@
               <td>
                 <div><span style="font-weight: bold;">Name :</span>&nbsp;<span id="profile-name">Name:</span></div>
                 <div><span style="font-weight: bold;">Username :</span>&nbsp;<span id="profile-username">Username:</span></div>
-                <div><span style="font-weight: bold;">Account Created :</span>&nbsp;<span id="profile-account-date">date</span></div>
+                <div><span style="font-weight: bold;">Account Created :</span>&nbsp;<small><span id="profile-account-date">date</span></small></div>
               </td>
             </tr>
           </table>
           <hr>
-          <i id="edit-usernane" class="fas fa-user-edit fa-1x" title="Edit username" style="color:gray;cursor:pointer;font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i id="edit-usernane" class="fas fa-user-edit fa-1x" title="Edit user name" style="color:gray;cursor:pointer;font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <i id="edit-password" class="fas fa-key fa-1x" title="Edit password" style="color:gray;cursor:pointer;font-size: 19px;"></i><br>
           <br>
         </section>
@@ -270,12 +270,12 @@
             class="account-form hidden"
             method="post"
           >
-          <h5 style="color: goldenrod">Edit username</h5>
+          <h5 style="color: goldenrod">Edit User Name</h5>
             <div class="login-input">
-              <label for="login-username"
-                >Username<span style="color: red">&nbsp;*&nbsp;</span></label
+              <label for="user-name-txt"
+                >User name<span style="color: red">&nbsp;*&nbsp;</span></label
               >
-              <input id="login-username" autocomplete="current-username" required />
+              <input id="user-name-txt" autocomplete="current-username" required />
             </div>
             
             <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>

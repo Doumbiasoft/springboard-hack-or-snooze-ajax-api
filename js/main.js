@@ -18,6 +18,7 @@ const $btnSubmitEditForm = $("#btnSubmitEditForm");
 
 const $usernameForm = $("#username-form");
 const $passwordForm = $("#password-form");
+const $userNameTxt = $("#user-name-txt");
 
 
 
@@ -33,6 +34,11 @@ const $navUserFavorites = $("#nav-user-favorites");
 
 const $editUsernane = $("#edit-usernane");
 const $editPassword = $("#edit-password");
+
+const $profileName = $("#profile-name");
+const $profileUsername = $("#profile-username");
+const $profileAccountDate = $("#profile-account-date");
+
 
 
 
