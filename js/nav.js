@@ -33,8 +33,7 @@ $navLogin.on("click", navLoginClick);
 function navUserProfileClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
-  $usernameForm.slideUp("slow");
-  $passwordForm.slideUp("slow");
+  
   $sectionUserProfile.slideDown("slow");
   $('a').removeClass('active');
   $navUserProfile.addClass("active");

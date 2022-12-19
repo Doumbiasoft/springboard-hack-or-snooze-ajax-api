@@ -15,6 +15,7 @@ const $signupForm = $("#signup-form");
 const $storySubmitForm = $("#story-submit-form");
 const $editStorySubmitForm = $("#edit-story-submit-form");
 const $btnSubmitEditForm = $("#btnSubmitEditForm");
+
 const $usernameForm = $("#username-form");
 const $passwordForm = $("#password-form");
 
@@ -47,11 +48,6 @@ const $spanMystories = $("#spanMystories");
 
 
 
-
-
-
-
-
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
@@ -66,6 +62,10 @@ function hidePageComponents() {
     $signupForm,
     $storySubmitForm,
     $editStorySubmitForm,
+    $sectionUserProfile,
+    $usernameForm,
+    $passwordForm,
+
   ];
   components.forEach(c => c.hide());
 }
