@@ -7,6 +7,8 @@ let iconDelete;
 let iconEdit;
 let storyId;
 let view;
+let iconColor;
+let ishidden;;
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -53,12 +55,15 @@ function generateStoryMarkup(story) {
 
   if (currentUser !== undefined) {
     iconFavorite = currentUser.isFavorite(story) ? 'fas' : 'far';
+    iconColor=currentUser.isFavorite(story) ? 'red' : 'gray';
     iconDelete = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
     iconEdit = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
+    ishidden='';
   } else {
     iconFavorite = 'hidden';
     iconDelete = 'hidden';
     iconEdit = 'hidden';
+    ishidden='hidden';
   }
 
   const hostName = story.getHostName();
@@ -73,8 +78,8 @@ function generateStoryMarkup(story) {
         </a><br>
         <span style="text-transform:capitalize;"><small style="font-weight:bold">posted by</small>&nbsp;${story.username}</span><br>
         <small><span style="font-weight:bold;">${postedDate}</span></small><br>
-        <div style="margin:10px;font-size:16px">
-        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x" style="color:red;cursor:pointer;"></i>
+        <div class="${ishidden}" style="margin:10px;font-size:19px">
+        <i data-id="${story.storyId}" title="Favorite" class="favoriteIcon ${iconFavorite} fa-heart fa-1x iconGray" style="color:${iconColor};cursor:pointer;"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="editIcon ${iconEdit} far fa-edit fa-1x" title="Edit" style="color:gray;cursor:pointer;"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i data-id="${story.storyId}" class="deleteIcon ${iconDelete} far fa-trash-alt fa-1x" title="Remove" style="color:gray;cursor:pointer;"></i>
         </div>
@@ -97,7 +102,7 @@ function putStoriesOnPage() {
     $allStoriesList.append($story);
   }
 
-  $allStoriesList.show();
+  $allStoriesList.slideDown();
 }
 /**  Shows user's own stories list*/
 
@@ -114,7 +119,7 @@ function LoadUserStoriesOnPage() {
       $userStoriesList.append($story);
     }
   }
-  $userStoriesList.show();
+  $userStoriesList.slideDown();
 }
 /**  Shows user's own favarites stories list*/
 
@@ -132,7 +137,7 @@ function LoadUserFavoritesStoriesOnPage() {
       $userFavoritesStoriesList.append($story);
     }
   }
-  $userFavoritesStoriesList.show();
+  $userFavoritesStoriesList.slideDown();
 }
 
 
@@ -147,6 +152,7 @@ async function addOrRemoveFavorite(e) {
   if ($target.hasClass("fas")) {
     await currentUser.removeToFavorite(story);
     $target.closest("i").toggleClass("fas far");
+    
   } else {
     await currentUser.addToFavorite(story);
     $target.closest("i").toggleClass("fas far");

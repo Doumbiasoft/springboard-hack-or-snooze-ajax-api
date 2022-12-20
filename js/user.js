@@ -44,6 +44,7 @@ async function signup(evt) {
   // which we'll make the globally-available, logged-in user.
   currentUser = await User.signup(username, password, name);
 
+
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 
@@ -56,12 +57,12 @@ async function updateUserName(e) {
   console.debug("updateUserName", e);
   e.preventDefault();
 
-  const name =$userNameTxt.val();
+  const name = $userNameTxt.val();
   $profileName.text(name);
   await currentUser.updateUserName(name);
   $usernameForm.slideUp("slow");
   $usernameForm.trigger('reset');
-  
+
 }
 
 $usernameForm.on("submit", updateUserName);

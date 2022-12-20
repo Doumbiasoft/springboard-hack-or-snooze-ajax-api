@@ -221,6 +221,7 @@ class User {
    */
 
   static async login(username, password) {
+    debugger;
     const response = await axios({
       url: `${BASE_URL}/login`,
       method: "POST",

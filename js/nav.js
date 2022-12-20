@@ -23,12 +23,43 @@ function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
   $storySubmitForm.trigger('reset');
+  $loginForm.trigger("reset");
+  $signupForm.trigger("reset");
+  
   $loginForm.slideDown("slow");
-  $signupForm.slideDown("slow");
+  $signupForm.slideUp("slow");
 
 }
 
 $navLogin.on("click", navLoginClick);
+
+
+function linkLogin(e) {
+  console.debug("navLoginClick", e);
+  hidePageComponents();
+
+  $loginForm.trigger("reset");
+  $signupForm.trigger("reset");
+
+  $loginForm.slideDown("slow");
+  $signupForm.slideUp("slow");
+
+}
+$loginLink.on("click", linkLogin);
+
+function linkSignup(e) {
+  console.debug("navLoginClick", e);
+  hidePageComponents();
+
+  $loginForm.trigger("reset");
+  $signupForm.trigger("reset");
+
+  $loginForm.slideUp("slow");
+  $signupForm.slideDown("slow");
+
+}
+$signupLink.on("click", linkSignup);
+
 
 function navUserProfileClick(evt) {
   console.debug("navLoginClick", evt);
@@ -46,7 +77,7 @@ function navUserProfileClick(evt) {
 $navUserProfile.on("click", navUserProfileClick);
 
 function editUserNameClick(e) {
-  debugger;
+
   $userNameTxt.val(currentUser.name);
   $usernameForm.slideDown("slow");
   $passwordForm.slideUp("slow");
@@ -68,7 +99,7 @@ function navSubmitClick(e) {
 
   /** */
   $storySubmitForm.trigger('reset');
-  //$allStoriesList.show();
+  
   putStoriesOnPage();
   $storySubmitForm.slideDown("slow");
   $('a').removeClass('active');
@@ -123,5 +154,4 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $mainNav.show();
   $navUserProfile.append(`<i class="fas fa-user-circle fa-1x" style="color:white;font-size:17"></i>&nbsp;${currentUser.username}`);
-  //$navUserProfile.html(`<i class="fas fa-user-circle"></i>&nbsp;${currentUser.username}`).show();
 }

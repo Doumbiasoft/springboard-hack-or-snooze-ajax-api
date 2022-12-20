@@ -20,6 +20,9 @@ const $usernameForm = $("#username-form");
 const $passwordForm = $("#password-form");
 const $userNameTxt = $("#user-name-txt");
 
+const $signupLink = $("#signup-link");
+const $loginLink = $("#login-Link");
+
 
 
 const $navHome = $("#nav-all");
