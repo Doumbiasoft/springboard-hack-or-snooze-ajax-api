@@ -22,6 +22,7 @@ $body.on("click", "#nav-all", navAllStories);
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
+  $messageId.html("");
   $storySubmitForm.trigger('reset');
   $loginForm.trigger("reset");
   $signupForm.trigger("reset");
@@ -37,7 +38,7 @@ $navLogin.on("click", navLoginClick);
 function linkLogin(e) {
   console.debug("navLoginClick", e);
   hidePageComponents();
-
+  $messageId.html("");
   $loginForm.trigger("reset");
   $signupForm.trigger("reset");
 
@@ -50,7 +51,7 @@ $loginLink.on("click", linkLogin);
 function linkSignup(e) {
   console.debug("navLoginClick", e);
   hidePageComponents();
-
+  $messageId.html("");
   $loginForm.trigger("reset");
   $signupForm.trigger("reset");
 

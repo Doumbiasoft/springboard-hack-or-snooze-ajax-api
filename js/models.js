@@ -228,10 +228,10 @@ class User {
       data: { user: { username, password } },
     });
 
-    
+
     let { user } = response.data;
 
-    if(!user){
+    if (!user) {
       alert("Your login or your password is incorrect!");
     }
 
@@ -288,6 +288,18 @@ class User {
       },
     });
   }
+  async updateUserPassword(password) {
+
+    await axios({
+      url: `${BASE_URL}/users/${this.username}`,
+      method: "PATCH",
+      data: {
+        token: this.loginToken,
+        user: { password: password }
+      },
+    });
+  }
+
 
   /** Add a story to the list of user favorites and update the Api*/
 

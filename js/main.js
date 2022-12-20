@@ -9,7 +9,6 @@ const $allStoriesList = $("#all-stories-list");
 const $userStoriesList = $("#user-stories-list");
 const $userFavoritesStoriesList = $("#user-favorites-stories-list");
 
-
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
 const $storySubmitForm = $("#story-submit-form");
@@ -20,12 +19,18 @@ const $usernameForm = $("#username-form");
 const $passwordForm = $("#password-form");
 const $userNameTxt = $("#user-name-txt");
 
+const $currentLoginPassword = $("#current-login-password");
+const $newLoginPassword = $("#new-login-password");
+
 const $signupLink = $("#signup-link");
 const $loginLink = $("#login-Link");
 
 const $messageId = $("#messageId");
+const $togglePasswordLogin = $("#togglePasswordLogin");
+const $togglePasswordSignup = $("#togglePasswordSignup");
 
-
+const $toggleCurrentPassword = $("#toggleCurrentPassword");
+const $toggleNewPassword = $("#toggleNewPassword");
 
 const $navHome = $("#nav-all");
 const $navLogin = $("#nav-login");
@@ -43,10 +48,6 @@ const $editPassword = $("#edit-password");
 const $profileName = $("#profile-name");
 const $profileUsername = $("#profile-username");
 const $profileAccountDate = $("#profile-account-date");
-
-
-
-
 
 const $mainNav = $(".main-nav");
 

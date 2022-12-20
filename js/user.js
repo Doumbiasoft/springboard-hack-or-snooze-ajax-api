@@ -12,20 +12,29 @@ let currentUser;
 async function login(evt) {
   console.debug("login", evt);
   evt.preventDefault();
-  //debugger;
+  $messageId.html("");
+
   // grab the username and password
   const username = $("#login-username").val();
   const password = $("#login-password").val();
 
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.login(username, password);
- 
+
+  try {
+    currentUser = await User.login(username, password);
+  } catch (err) {
+    if (!(currentUser instanceof User)) {
+      $messageId.html("Credentials informations are incorrect!");
+      return;
+    }
+  }
+
   $loginForm.trigger("reset");
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
-  
+
 }
 
 $loginForm.on("submit", login);
@@ -35,6 +44,7 @@ $loginForm.on("submit", login);
 async function signup(evt) {
   console.debug("signup", evt);
   evt.preventDefault();
+  $messageId.html("");
 
   const name = $("#signup-name").val();
   const username = $("#signup-username").val();
@@ -42,9 +52,15 @@ async function signup(evt) {
 
   // User.signup retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.signup(username, password, name);
 
-
+  try {
+    currentUser = await User.signup(username, password, name);
+  } catch (err) {
+    if (!(currentUser instanceof User)) {
+      $messageId.html("This Username already exist. Please change it!");
+      return;
+    }
+  }
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
@@ -65,8 +81,67 @@ async function updateUserName(e) {
   $usernameForm.trigger('reset');
 
 }
-
 $usernameForm.on("submit", updateUserName);
+
+async function changePassword(e) {
+  console.debug("checkPassword", e);
+  e.preventDefault();
+  $messageId.html("");
+  let isValid;
+
+  try {
+    isValid = await User.login(currentUser.username, $currentLoginPassword.val());
+  } catch (err) {
+    if (!(isValid instanceof User)) {
+      $messageId.html("The current password is incorrect. check it!");
+      return;
+    }
+  }
+  await currentUser.updateUserPassword($newLoginPassword.val());
+  $passwordForm.slideUp("slow");
+  $passwordForm.trigger('reset');
+
+}
+$passwordForm.on("submit", changePassword);
+
+function togglePasswordLogin() {
+  const $password = $("#login-password");
+  const type = $password.attr("type") === "password" ? "text" : "password";
+  $password.attr("type", type);
+  // toggle the icon
+  $togglePasswordLogin.toggleClass("fa-eye-slash fa-eye");
+}
+$togglePasswordLogin.on("click", togglePasswordLogin);
+
+function togglePasswordSignup() {
+  const $password = $("#signup-password");
+  const type = $password.attr("type") === "password" ? "text" : "password";
+  $password.attr("type", type);
+  // toggle the icon
+  $togglePasswordSignup.toggleClass("fa-eye-slash fa-eye");
+}
+$togglePasswordSignup.on("click", togglePasswordSignup);
+
+
+function toggleCurrentPassword() {
+
+  const type = $currentLoginPassword.attr("type") === "password" ? "text" : "password";
+  $currentLoginPassword.attr("type", type);
+  // toggle the icon
+  $toggleCurrentPassword.toggleClass("fa-eye-slash fa-eye");
+}
+$toggleCurrentPassword.on("click", toggleCurrentPassword);
+
+function toggleNewPassword() {
+
+  const type = $newLoginPassword.attr("type") === "password" ? "text" : "password";
+  $newLoginPassword.attr("type", type);
+  // toggle the icon
+  $toggleNewPassword.toggleClass("fa-eye-slash fa-eye");
+}
+$toggleNewPassword.on("click", toggleNewPassword);
+
+
 
 
 /** Handle click of logout button

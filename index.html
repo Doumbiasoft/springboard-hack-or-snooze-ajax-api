@@ -196,7 +196,7 @@
             type="password"
             autocomplete="current-password"
             required
-          />
+          />&nbsp;<i class="fa fa-eye-slash" style="font-size:26px;cursor: pointer;color:goldenrod;" id="togglePasswordLogin"></i>
         </div>
         <button type="submit"><i class="fas fa-key"></i>&nbsp;Login</button>
         <div class="login-input">
@@ -234,7 +234,7 @@
             autocomplete="new-password"
             type="password"
             required
-          />
+          />&nbsp;<i class="fa fa-eye-slash" style="font-size:26px;cursor: pointer;color:goldenrod;" id="togglePasswordSignup"></i>
         </div>
         <button type="submit">
           <i class="fas fa-user-plus"></i>&nbsp;Create account
@@ -244,103 +244,94 @@
         </div>
         <br>
       </form>
+
+      <section id="user-profile" class="hidden">
+        <div style="line-height: 2;" class="user-profile-box container">
+          <section>
+            <h4 style="color: goldenrod">User Profile Info</h4>
+            <hr>
+            <table width="100%">
+              <tr>
+                <td style="width: 65px;">
+                  <i id="edit-profile" class="fas fa-user-circle fa-4x" title="Edit" style="color:#424141;"></i>
+                </td>
+                <td>
+                  <div><span style="font-weight: bold;">Name :</span>&nbsp;<span id="profile-name">Name:</span></div>
+                  <div><span style="font-weight: bold;">Username :</span>&nbsp;<span id="profile-username">Username:</span></div>
+                  <div><span style="font-weight: bold;">Account Created :</span>&nbsp;<small><span id="profile-account-date">date</span></small></div>
+                </td>
+              </tr>
+            </table>
+            <hr>
+            <i id="edit-usernane" class="fas fa-user-edit fa-1x" title="Edit user name" style="color:gray;cursor:pointer;font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i id="edit-password" class="fas fa-key fa-1x" title="Edit password" style="color:gray;cursor:pointer;font-size: 19px;"></i><br>
+            <br>
+          </section>
+          <section class="">
+           <!-- username form -->
+          
+            <form
+              action="#"
+              id="username-form"
+              class="account-form hidden"
+              method="post"
+            >
+            <h5 style="color: goldenrod">Edit User Name</h5>
+              <div class="login-input">
+                <label for="user-name-txt"
+                  >User name<span style="color: red">&nbsp;*&nbsp;</span></label
+                >
+                <input id="user-name-txt" autocomplete="current-username" required />
+              </div>
+              
+              <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
+            </form>
+          </section>
+          <section class="">
+            <!-- password form -->
+            
+            <form
+              action="#"
+              id="password-form"
+              class="account-form hidden"
+              method="post"
+            >
+            <h5 style="color: goldenrod">Edit password</h5>
+              <div class="login-input">
+                <label for="current-login-password"
+                  >Current password<span style="color: red">&nbsp;*&nbsp;</span></label
+                >
+                <input
+                  id="current-login-password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                />&nbsp;<i class="fa fa-eye-slash" style="font-size:26px;cursor: pointer;color:goldenrod;" id="toggleCurrentPassword"></i>
+              </div>
+              <div class="login-input">
+                <label for="new-login-password"
+                  >New password<span style="color: red">&nbsp;*&nbsp;</span></label
+                >
+                <input
+                  id="new-login-password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                />&nbsp;<i class="fa fa-eye-slash" style="font-size:26px;cursor: pointer;color:goldenrod;" id="toggleNewPassword"></i>
+              </div>
+              <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
+            </form>
+          </section>
+         
+        </div>
+        
+      </section>
       <div id="messageId" style="color: red;padding: 20px;">
         
     </div>
     </section>
     <!-- User profile -->
-    <section id="user-profile" class="hidden">
-      <div style="line-height: 2;" class="user-profile-box container">
-        <section>
-          <h4 style="color: goldenrod">User Profile Info</h4>
-          <hr>
-          <table width="100%">
-            <tr>
-              <td style="width: 65px;">
-                <i id="edit-profile" class="fas fa-user-circle fa-4x" title="Edit" style="color:#424141;"></i>
-              </td>
-              <td>
-                <div><span style="font-weight: bold;">Name :</span>&nbsp;<span id="profile-name">Name:</span></div>
-                <div><span style="font-weight: bold;">Username :</span>&nbsp;<span id="profile-username">Username:</span></div>
-                <div><span style="font-weight: bold;">Account Created :</span>&nbsp;<small><span id="profile-account-date">date</span></small></div>
-              </td>
-            </tr>
-          </table>
-          <hr>
-          <i id="edit-usernane" class="fas fa-user-edit fa-1x" title="Edit user name" style="color:gray;cursor:pointer;font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <i id="edit-password" class="fas fa-key fa-1x" title="Edit password" style="color:gray;cursor:pointer;font-size: 19px;"></i><br>
-          <br>
-        </section>
-        <section class="">
-         <!-- username form -->
-        
-          <form
-            action="#"
-            id="username-form"
-            class="account-form hidden"
-            method="post"
-          >
-          <h5 style="color: goldenrod">Edit User Name</h5>
-            <div class="login-input">
-              <label for="user-name-txt"
-                >User name<span style="color: red">&nbsp;*&nbsp;</span></label
-              >
-              <input id="user-name-txt" autocomplete="current-username" required />
-            </div>
-            
-            <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
-          </form>
-        </section>
-        <section class="">
-          <!-- password form -->
-          
-          <form
-            action="#"
-            id="password-form"
-            class="account-form hidden"
-            method="post"
-          >
-          <h5 style="color: goldenrod">Edit password</h5>
-            <div class="login-input">
-              <label for="login-password"
-                >Current password<span style="color: red">&nbsp;*&nbsp;</span></label
-              >
-              <input
-                id="login-password"
-                type="password"
-                autocomplete="current-password"
-                required
-              />
-            </div>
-            <div class="login-input">
-              <label for="login-password"
-                >New password<span style="color: red">&nbsp;*&nbsp;</span></label
-              >
-              <input
-                id="login-password"
-                type="password"
-                autocomplete="current-password"
-                required
-              />
-            </div>
-            <div class="login-input">
-              <label for="login-password"
-                >Confirm password<span style="color: red">&nbsp;*&nbsp;</span></label
-              >
-              <input
-                id="login-password"
-                type="password"
-                autocomplete="current-password"
-                required
-              />
-            </div>
-            <button type="submit"><i class="fas fa-sync-alt"></i>&nbsp;Update</button>
-          </form>
-        </section>
-       
-      </div>
-      
-    </section>
+    
 
     <!-- Library JS & our JS -->
     <script src="https://unpkg.com/jquery"></script>
