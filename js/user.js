@@ -25,7 +25,7 @@ async function login(evt) {
     currentUser = await User.login(username, password);
   } catch (err) {
     if (!(currentUser instanceof User)) {
-      $messageId.html("Credentials informations are incorrect!");
+      $messageId.html("Credentials informations are incorrect or this account does not exist!");
       return;
     }
   }
@@ -103,6 +103,17 @@ async function changePassword(e) {
 
 }
 $passwordForm.on("submit", changePassword);
+
+async function deleteUserClick(e) {
+  if (confirm("Are you sure you want delete this user?")) {
+    await currentUser.deleteUser();
+    localStorage.clear();
+    location.reload();
+  }
+}
+$deleteUser.on("click", deleteUserClick);
+
+
 
 function togglePasswordLogin() {
   const $password = $("#login-password");

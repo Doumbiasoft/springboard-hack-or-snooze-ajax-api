@@ -44,6 +44,8 @@ const $navUserFavorites = $("#nav-user-favorites");
 
 const $editUsernane = $("#edit-usernane");
 const $editPassword = $("#edit-password");
+const $deleteUser = $("#delete-user");
+
 
 const $profileName = $("#profile-name");
 const $profileUsername = $("#profile-username");

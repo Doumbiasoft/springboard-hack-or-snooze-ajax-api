@@ -299,7 +299,15 @@ class User {
       },
     });
   }
-
+  async deleteUser() {
+    await axios({
+      url: `${BASE_URL}/users/${this.username}`,
+      method: "DELETE",
+      data: {
+        token: this.loginToken,
+      },
+    });
+  }
 
   /** Add a story to the list of user favorites and update the Api*/
 

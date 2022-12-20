@@ -26,7 +26,7 @@ function navLoginClick(evt) {
   $storySubmitForm.trigger('reset');
   $loginForm.trigger("reset");
   $signupForm.trigger("reset");
-  
+
   $loginForm.slideDown("slow");
   $signupForm.slideUp("slow");
 
@@ -92,6 +92,9 @@ function editUserPasswordClick(e) {
 $editPassword.on("click", editUserPasswordClick);
 
 
+
+
+
 /** Show story submit form on click on "Submit" */
 
 function navSubmitClick(e) {
@@ -100,7 +103,7 @@ function navSubmitClick(e) {
 
   /** */
   $storySubmitForm.trigger('reset');
-  
+
   putStoriesOnPage();
   $storySubmitForm.slideDown("slow");
   $('a').removeClass('active');
