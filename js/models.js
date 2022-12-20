@@ -221,14 +221,19 @@ class User {
    */
 
   static async login(username, password) {
-    debugger;
+    //debugger;
     const response = await axios({
       url: `${BASE_URL}/login`,
       method: "POST",
       data: { user: { username, password } },
     });
 
+    
     let { user } = response.data;
+
+    if(!user){
+      alert("Your login or your password is incorrect!");
+    }
 
     return new User(
       {

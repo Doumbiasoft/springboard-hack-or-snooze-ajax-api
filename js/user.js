@@ -12,7 +12,7 @@ let currentUser;
 async function login(evt) {
   console.debug("login", evt);
   evt.preventDefault();
-
+  //debugger;
   // grab the username and password
   const username = $("#login-username").val();
   const password = $("#login-password").val();
@@ -20,12 +20,12 @@ async function login(evt) {
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
   currentUser = await User.login(username, password);
-
+ 
   $loginForm.trigger("reset");
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
-  mobileMenuIcon();
+  
 }
 
 $loginForm.on("submit", login);
@@ -43,6 +43,7 @@ async function signup(evt) {
   // User.signup retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
   currentUser = await User.signup(username, password, name);
+
 
 
   saveUserCredentialsInLocalStorage();

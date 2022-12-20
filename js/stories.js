@@ -32,6 +32,7 @@ async function addNewStory(evt) {
   const $story = generateStoryMarkup(story);
 
   $allStoriesList.prepend($story);
+  putStoriesOnPage();
 
   $storySubmitForm.slideUp("slow");
   $storySubmitForm.trigger('reset');

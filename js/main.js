@@ -23,6 +23,8 @@ const $userNameTxt = $("#user-name-txt");
 const $signupLink = $("#signup-link");
 const $loginLink = $("#login-Link");
 
+const $messageId = $("#messageId");
+
 
 
 const $navHome = $("#nav-all");
@@ -91,6 +93,7 @@ async function start() {
   $navHome.addClass("active");
   // if we got a logged-in user
   if (currentUser) updateUIOnUserLogin();
+  
 }
 
 // Once the DOM is entirely loaded, begin the app
