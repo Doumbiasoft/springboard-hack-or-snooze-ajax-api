@@ -149,7 +149,22 @@ async function addOrRemoveFavorite(e) {
 
   const $target = $(e.target);
   const storyId = $target.closest("i").attr("data-id");
-  const story = storyList.stories.find(s => s.storyId === storyId);
+
+  let story;
+
+  view = $target.closest("i").attr("data-view");
+  //Use to do the select in the appropriate list
+  switch (view) {
+    case "All":
+      story = storyList.stories.find((s) => s.storyId === storyId);
+      break;
+    case "Fav":
+      story = currentUser.favorites.find((s) => s.storyId === storyId);
+      break;
+    case "Own":
+      story = currentUser.ownStories.find((s) => s.storyId === storyId);
+      break;
+  }
 
   if ($target.hasClass("fas")) {
     await currentUser.removeToFavorite(story);
@@ -160,14 +175,31 @@ async function addOrRemoveFavorite(e) {
     $target.closest("i").toggleClass("fas far");
   }
 }
+//set some parameters to know the stories list where the favorites is applied
+function setViewAllFavorites(e) {
+  const $target = $(e.target);
+  $target.closest("i").attr("data-view", "All");
 
+}
+function setViewFavFavorites(e) {
+  const $target = $(e.target);
+  $target.closest("i").attr("data-view", "Fav");
 
+}
+function setViewOwnFavorites(e) {
+  const $target = $(e.target);
+  $target.closest("i").attr("data-view", "Own");
+}
+
+$allStoriesList.on("click", ".favoriteIcon", setViewAllFavorites);
 $allStoriesList.on("click", ".favoriteIcon", addOrRemoveFavorite);
 $allStoriesList.on("click", ".favoriteIcon", putStoriesOnPage);
 
+$userFavoritesStoriesList.on("click", ".favoriteIcon", setViewFavFavorites);
 $userFavoritesStoriesList.on("click", ".favoriteIcon", addOrRemoveFavorite);
 $userFavoritesStoriesList.on("click", ".favoriteIcon", LoadUserFavoritesStoriesOnPage);
 
+$userStoriesList.on("click", ".favoriteIcon", setViewOwnFavorites);
 $userStoriesList.on("click", ".favoriteIcon", addOrRemoveFavorite);
 $userStoriesList.on("click", ".favoriteIcon", LoadUserStoriesOnPage);
 
@@ -198,7 +230,22 @@ function editStory(e) {
 
   const $target = $(e.target);
   const stId = $target.closest("i").attr("data-id");
-  const story = storyList.stories.find((s) => s.storyId === stId);
+  let story;
+
+  view = $btnSubmitEditForm.attr("data-view");
+  //Use to do the select in the appropriate list
+  switch (view) {
+    case "All":
+      story = storyList.stories.find((s) => s.storyId === stId);
+      break;
+    case "Fav":
+      story = currentUser.favorites.find((s) => s.storyId === stId);
+      break;
+    case "Own":
+      story = currentUser.ownStories.find((s) => s.storyId === stId);
+      break;
+  }
+
   storyId = stId;
   $("#edit-story-author").val(story.author);
   $("#edit-story-title").val(story.title);
@@ -208,24 +255,24 @@ function editStory(e) {
 
 }
 //set some parameters to know the stories list where the update is happening
-function setViewAll() {
+function setViewAllEdit() {
   $btnSubmitEditForm.attr("data-view", "All");
 }
-function setViewFav() {
+function setViewFavEdit() {
   $btnSubmitEditForm.attr("data-view", "Fav");
 }
-function setViewOwn() {
+function setViewOwnEdit() {
   $btnSubmitEditForm.attr("data-view", "Own");
 }
 
+$allStoriesList.on("click", ".editIcon", setViewAllEdit);
 $allStoriesList.on("click", ".editIcon", editStory);
-$allStoriesList.on("click", ".editIcon", setViewAll);
 
+$userFavoritesStoriesList.on("click", ".editIcon", setViewFavEdit);
 $userFavoritesStoriesList.on("click", ".editIcon", editStory);
-$userFavoritesStoriesList.on("click", ".editIcon", setViewFav);
 
+$userStoriesList.on("click", ".editIcon", setViewOwnEdit);
 $userStoriesList.on("click", ".editIcon", editStory);
-$userStoriesList.on("click", ".editIcon", setViewOwn);
 
 
 async function updateAstory(e) {
@@ -241,7 +288,7 @@ async function updateAstory(e) {
   $editStorySubmitForm.slideUp();
 
   view = $btnSubmitEditForm.attr("data-view");
-//Use parameter to refresh the appropriate list
+  //Use parameter to refresh the appropriate list
   switch (view) {
     case "All":
       putStoriesOnPage();
