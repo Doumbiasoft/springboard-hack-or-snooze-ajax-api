@@ -25,7 +25,7 @@ async function login(evt) {
     currentUser = await User.login(username, password);
   } catch (err) {
     if (!(currentUser instanceof User)) {
-      $messageId.html("Credentials informations are incorrect or this account does not exist!");
+      $messageId.html("Credential information is incorrect or this account does not exist!");
       return;
     }
   }
@@ -57,7 +57,7 @@ async function signup(evt) {
     currentUser = await User.signup(username, password, name);
   } catch (err) {
     if (!(currentUser instanceof User)) {
-      $messageId.html("This Username already exist. Please change it!");
+      $messageId.html("This Username already exists. Please change it!");
       return;
     }
   }
@@ -93,7 +93,7 @@ async function changePassword(e) {
     isValid = await User.login(currentUser.username, $currentLoginPassword.val());
   } catch (err) {
     if (!(isValid instanceof User)) {
-      $messageId.html("The current password is incorrect. check it!");
+      $messageId.html("The current password is incorrect. Please check it!");
       return;
     }
   }
@@ -105,7 +105,7 @@ async function changePassword(e) {
 $passwordForm.on("submit", changePassword);
 
 async function deleteUserClick(e) {
-  if (confirm("Are you sure you want delete this user?")) {
+  if (confirm("Are you sure you want to delete this user?")) {
     await currentUser.deleteUser();
     localStorage.clear();
     location.reload();

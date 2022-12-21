@@ -175,7 +175,10 @@ $userStoriesList.on("click", ".favoriteIcon", LoadUserStoriesOnPage);
 async function deleteStory(e) {
   const $target = $(e.target);
   const storyId = $target.closest("i").attr("data-id");
-  await storyList.removeStory(currentUser, storyId);
+
+  if (confirm("Are you sure you want to delete this story?")) {
+    await storyList.removeStory(currentUser, storyId);
+  }
 }
 
 $allStoriesList.on("click", ".deleteIcon", deleteStory);
