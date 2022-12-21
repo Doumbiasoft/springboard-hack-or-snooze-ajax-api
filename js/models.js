@@ -57,7 +57,7 @@ class StoryList {
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
-      url: `${BASE_URL}/stories`,
+      url: `${BASE_URL}/stories?skip=1&limit=25`,
       method: "GET",
     });
 
