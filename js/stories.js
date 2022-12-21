@@ -54,17 +54,18 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
   if (story === null) return;
 
+  //check if the user is authenticated and do some actions
   if (currentUser !== undefined) {
     iconFavorite = currentUser.isFavorite(story) ? 'fas' : 'far';
-    iconColor=currentUser.isFavorite(story) ? 'red' : 'gray';
+    iconColor = currentUser.isFavorite(story) ? 'red' : 'gray';
     iconDelete = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
     iconEdit = currentUser.ownStories.some((elt) => elt.storyId === story.storyId) ? '' : 'hidden';
-    ishidden='';
+    ishidden = '';
   } else {
     iconFavorite = 'hidden';
     iconDelete = 'hidden';
     iconEdit = 'hidden';
-    ishidden='hidden';
+    ishidden = 'hidden';
   }
 
   const hostName = story.getHostName();
@@ -153,7 +154,7 @@ async function addOrRemoveFavorite(e) {
   if ($target.hasClass("fas")) {
     await currentUser.removeToFavorite(story);
     $target.closest("i").toggleClass("fas far");
-    
+
   } else {
     await currentUser.addToFavorite(story);
     $target.closest("i").toggleClass("fas far");
@@ -206,6 +207,7 @@ function editStory(e) {
   $editStorySubmitForm.slideDown();
 
 }
+//set some parameters to know the stories list where the update is happening
 function setViewAll() {
   $btnSubmitEditForm.attr("data-view", "All");
 }
@@ -239,7 +241,7 @@ async function updateAstory(e) {
   $editStorySubmitForm.slideUp();
 
   view = $btnSubmitEditForm.attr("data-view");
-  
+//Use parameter to refresh the appropriate list
   switch (view) {
     case "All":
       putStoriesOnPage();
@@ -254,6 +256,3 @@ async function updateAstory(e) {
 
 }
 $editStorySubmitForm.on("submit", updateAstory);
-
-
-

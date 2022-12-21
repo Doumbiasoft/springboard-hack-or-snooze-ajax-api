@@ -56,6 +56,7 @@ async function signup(evt) {
   try {
     currentUser = await User.signup(username, password, name);
   } catch (err) {
+    //check if the username already exists.
     if (!(currentUser instanceof User)) {
       $messageId.html("This Username already exists. Please change it!");
       return;
@@ -70,6 +71,8 @@ async function signup(evt) {
 
 $signupForm.on("submit", signup);
 
+
+//this fonction allows us to change the User name
 async function updateUserName(e) {
   console.debug("updateUserName", e);
   e.preventDefault();
@@ -83,6 +86,7 @@ async function updateUserName(e) {
 }
 $usernameForm.on("submit", updateUserName);
 
+//this fonction allows us to change the password
 async function changePassword(e) {
   console.debug("checkPassword", e);
   e.preventDefault();
@@ -104,6 +108,7 @@ async function changePassword(e) {
 }
 $passwordForm.on("submit", changePassword);
 
+//this fonction allows us to delete the user account
 async function deleteUserClick(e) {
   if (confirm("Are you sure you want to delete this user?")) {
     await currentUser.deleteUser();
@@ -113,7 +118,7 @@ async function deleteUserClick(e) {
 }
 $deleteUser.on("click", deleteUserClick);
 
-
+//those fonction allows us to mask and show password
 
 function togglePasswordLogin() {
   const $password = $("#login-password");
