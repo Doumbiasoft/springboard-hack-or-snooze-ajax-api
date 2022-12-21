@@ -1,12 +1,12 @@
 # Unit 16 : AJAX with jQuery Exercise: Hack-or-Snooze
 
-Live at https://doumbiasoft.github.io/springboard-hack-or-snooze-ajax-api/
+**Live at** https://doumbiasoft.github.io/springboard-hack-or-snooze-ajax-api/
 
 ![alt image](https://github.com/doumbiasoft/springboard-hack-or-snooze-ajax-api/blob/main/images/hack_o_snooze_2.png)
 
 In this exercise, you’ll add features to a news-aggregator site (based loosely on a popular one called Hacker News). It will allow users to create accounts, log in, create articles, mark articles as favorites, and more!
 
-![alt image](https://github.com/doumbiasoft/springboard-hack-or-snooze-ajax-api/blob/main/images/hack_o_snooze_2.png)
+![alt image](https://github.com/doumbiasoft/springboard-hack-or-snooze-ajax-api/blob/main/images/spring-hack-or-snooze.png)
 
 We’ve already built the backend server API, so you’ll focus on learning to use an API and adding features to the front-end Javascript.
 
@@ -68,7 +68,7 @@ It can be very helpful to make a pen-and-paper drawing of the names of the impor
 
 
 
-![alt image](https://github.com/doumbiasoft/springboard-hack-or-snooze-ajax-api/blob/main/images/hack_o_snooze_2.png)
+![alt image](https://github.com/doumbiasoft/springboard-hack-or-snooze-ajax-api/blob/main/images/schema-hack-or-snooze.png)
 
 
 ## Part 2: Creating New Stories
