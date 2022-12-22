@@ -96,7 +96,7 @@ async function start() {
   $navHome.addClass("active");
   // if we got a logged-in user
   if (currentUser) updateUIOnUserLogin();
-  
+
 }
 
 // Once the DOM is entirely loaded, begin the app
@@ -131,3 +131,4 @@ function CheckscreenMode() {
     $spanMystories.html("&nbsp;My stories");
   }
 }
+

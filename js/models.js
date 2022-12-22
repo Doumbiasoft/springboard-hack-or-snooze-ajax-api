@@ -57,9 +57,27 @@ class StoryList {
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
-      url: `${BASE_URL}/stories?skip=1&limit=25`,
+      url: `${BASE_URL}/stories`,
       method: "GET",
     });
+  
+    // turn plain old story objects from API into instances of Story class
+    const stories = response.data.stories.map(story => new Story(story));
+
+    // build an instance of our own class using the new array of stories
+    return new StoryList(stories);
+  }
+  static async getStoriesWithLimit(limit) {
+    // Note presence of `static` keyword: this indicates that getStories is
+    //  **not** an instance method. Rather, it is a method that is called on the
+    //  class directly. Why doesn't it make sense for getStories to be an
+    //  instance method?
+
+    const response = await axios({
+      url: `${BASE_URL}/stories?skip=0&limit=${limit}`,
+      method: "GET",
+    });
+
 
     // turn plain old story objects from API into instances of Story class
     const stories = response.data.stories.map(story => new Story(story));
