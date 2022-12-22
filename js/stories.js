@@ -23,6 +23,9 @@ $(window).scroll(async function () {
       putStoriesOnPage();
       numbLimit += 1;
       isWorking = false;
+      if (numbLimit === storyList.length) {
+        numbLimit = 10;
+      }
     }
   }
 
