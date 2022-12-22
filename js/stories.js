@@ -10,32 +10,12 @@ let view;
 let iconColor;
 let ishidden;
 
-/** */
-let numbLimit = 25;
-let isWorking = false;
-//infinite scroll fonction
-$(window).scroll(async function () {
 
-  const loadScrollData = async () => {
-    if (isWorking === false) {
-      isWorking = true;
-      storyList = await StoryList.getStoriesWithLimit(numbLimit);
-      putStoriesOnPage();
-      numbLimit += 1;
-      isWorking = false;
-    }
-  }
-  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-    loadScrollData();
-  }
-});
-/** */
 
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
-  // storyList = await StoryList.getStories();
-  storyList = await StoryList.getStoriesWithLimit(numbLimit);
+ storyList = await StoryList.getStories();
   $storiesLoadingMsg.remove();
 
   putStoriesOnPage();
