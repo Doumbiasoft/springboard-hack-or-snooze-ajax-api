@@ -11,7 +11,7 @@ let iconColor;
 let ishidden;
 
 /** */
-let numbLimit = 10;
+let numbLimit = 25;
 let isWorking = false;
 //infinite scroll fonction
 $(window).scroll(async function () {
@@ -23,16 +23,11 @@ $(window).scroll(async function () {
       putStoriesOnPage();
       numbLimit += 1;
       isWorking = false;
-      if (numbLimit === storyList.length) {
-        numbLimit = 10;
-      }
     }
   }
-
   if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
     loadScrollData();
   }
-
 });
 /** */
 
