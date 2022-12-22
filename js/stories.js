@@ -19,10 +19,9 @@ $(window).scroll(async function () {
   const loadScrollData = async () => {
     if (isWorking === false) {
       isWorking = true;
-      numbLimit += 1;
-      
       storyList = await StoryList.getStoriesWithLimit(numbLimit);
       putStoriesOnPage();
+      numbLimit += 1;
       isWorking = false;
     }
   }
@@ -30,7 +29,7 @@ $(window).scroll(async function () {
   if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
     loadScrollData();
   }
-  
+
 });
 /** */
 
