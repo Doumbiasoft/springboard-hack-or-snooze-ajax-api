@@ -111,8 +111,10 @@ function putStoriesOnPage() {
 }
 /**  Shows user's own stories list*/
 
-function LoadUserStoriesOnPage() {
+async function LoadUserStoriesOnPage() {
   console.debug("LoadUserStoriesOnPage");
+  await checkForRememberedUser();
+  storyList = await StoryList.getStories();
   $userStoriesList.empty();
   const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;User stories</h4><br>`);
   $userStoriesList.prepend($title);
@@ -128,8 +130,10 @@ function LoadUserStoriesOnPage() {
 }
 /**  Shows user's own favarites stories list*/
 
-function LoadUserFavoritesStoriesOnPage() {
+async function LoadUserFavoritesStoriesOnPage() {
   console.debug("LoadUserFavoritesStoriesOnPage");
+  await checkForRememberedUser();
+  storyList = await StoryList.getStories();
   $userFavoritesStoriesList.empty();
   const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;Favorite stories</h4><br>`);
   $userFavoritesStoriesList.prepend($title);
@@ -297,10 +301,10 @@ async function updateAstory(e) {
       putStoriesOnPage();
       break;
     case "Fav":
-      LoadUserFavoritesStoriesOnPage();
+     await LoadUserFavoritesStoriesOnPage();
       break;
     case "Own":
-      LoadUserStoriesOnPage();
+     await LoadUserStoriesOnPage();
       break;
   }
 
