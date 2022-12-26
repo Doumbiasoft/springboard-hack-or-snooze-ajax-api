@@ -117,9 +117,11 @@ $navSubmit.on("click", navSubmitClick);
 
 /** Show user story list" */
 
-function navUserStoryClick(e) {
+async function navUserStoryClick(e) {
   console.debug("navUserStoryClick", e);
   hidePageComponents();
+  await checkForRememberedUser();
+  storyList = await StoryList.getStories();
   $storySubmitForm.trigger('reset');
   $loginForm.hide();
   $signupForm.hide();
@@ -133,9 +135,11 @@ $navUserStory.on("click", navUserStoryClick);
 
 /** Show user favarites story list" */
 
-function navUserFavoritesClick(e) {
+async function navUserFavoritesClick(e) {
   console.debug("navUserFavoritesClick", e);
   hidePageComponents();
+  await checkForRememberedUser();
+  storyList = await StoryList.getStories();
   $storySubmitForm.trigger('reset');
   $loginForm.hide();
   $signupForm.hide();

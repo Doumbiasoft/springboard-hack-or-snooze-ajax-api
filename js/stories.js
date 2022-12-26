@@ -113,8 +113,7 @@ function putStoriesOnPage() {
 
 async function LoadUserStoriesOnPage() {
   console.debug("LoadUserStoriesOnPage");
-  await checkForRememberedUser();
-  storyList = await StoryList.getStories();
+ 
   $userStoriesList.empty();
   const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;User stories</h4><br>`);
   $userStoriesList.prepend($title);
@@ -130,10 +129,8 @@ async function LoadUserStoriesOnPage() {
 }
 /**  Shows user's own favarites stories list*/
 
-async function LoadUserFavoritesStoriesOnPage() {
+ function LoadUserFavoritesStoriesOnPage() {
   console.debug("LoadUserFavoritesStoriesOnPage");
-  await checkForRememberedUser();
-  storyList = await StoryList.getStories();
   $userFavoritesStoriesList.empty();
   const $title = $(`<h4 style="color:goldenrod"><i class="fas fa-list-ul" style="color:#424141"></i>&nbsp;Favorite stories</h4><br>`);
   $userFavoritesStoriesList.prepend($title);
@@ -219,6 +216,8 @@ async function deleteStory(e) {
   if (confirm("Are you sure you want to delete this story?")) {
     await storyList.removeStory(currentUser, storyId);
   }
+  await checkForRememberedUser();
+  storyList = await StoryList.getStories();
 }
 
 $allStoriesList.on("click", ".deleteIcon", deleteStory);
@@ -292,6 +291,7 @@ async function updateAstory(e) {
   const url = $("#edit-story-url").val();
   const story = { storyId, author, title, url };
   await storyList.updateStory(currentUser, story);
+  storyList = await StoryList.getStories();
   $editStorySubmitForm.slideUp();
 
   view = $btnSubmitEditForm.attr("data-view");
@@ -301,10 +301,10 @@ async function updateAstory(e) {
       putStoriesOnPage();
       break;
     case "Fav":
-     await LoadUserFavoritesStoriesOnPage();
+      LoadUserFavoritesStoriesOnPage();
       break;
     case "Own":
-     await LoadUserStoriesOnPage();
+      LoadUserStoriesOnPage();
       break;
   }
 
